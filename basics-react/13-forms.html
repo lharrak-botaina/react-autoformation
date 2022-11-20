@@ -14,24 +14,59 @@
 
 <div id="root"></div>
 <script type="text/babel">
+ class Form extends React.Component{
+  constructor(props){
+    super(props)
+    this.state ={
+      username:'',
+      comments:''
+    }
+  }
+  handlerUsernameChange=(event)=>{
+    this.setState({
+     
+      username:event.target.value
+    })
+  }
+  handlerCommentChange=(event)=>{
+    this.setState({
+      comments:event.target.value
+    })
+  }
+  handlerSubmit=event=>{
+    alert(`${this.state.username} ${this.state.comments}`)
+    event.preventDefault();
+  }
+  render(){
+    return(
+      <form onSubmit={this.handlerSubmit} >
+      <div>
+        <label>username:
+        <input type="text" value={this.state.username}
+         onChange={this.handlerUsernameChange} />
+        </label>
+        </div>
+        <div>
+          <label >comments</label>
+          <textarea value={this.state.comments}
+         onChange={this.handlerCommentChange}  ></textarea>
+          </div>
+          <button type="submit">submit</button>
+
+    </form>
+    )
+  }
+ }
+
+
+
+
+
  
 
 
-
-
-
- function MyForm() {
-  return (
-    <form>
-      <label>Enter your name:
-        <input type="text" />
-      </label>
-    </form>
-  )
-}
-
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<MyForm />);
+root.render(<Form />);
 
 
 
